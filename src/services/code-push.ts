@@ -1,6 +1,13 @@
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { CodePush, SyncStatus, SyncOptions, SuccessCallback, DownloadProgress } from 'ionic-native';
+import {
+  Network,
+  CodePush,
+  SyncStatus,
+  SyncOptions,
+  SuccessCallback,
+  DownloadProgress
+} from 'ionic-native';
 import { Platform } from 'ionic-angular';
 
 @Injectable()
@@ -15,6 +22,11 @@ export class CodePushService {
     if (!this.platform.is('cordova')) {
       return Observable.of(SyncStatus.UP_TO_DATE);
     } else {
+      // before we issue the sync call let's make sure that
+      // we do have internet connectivity
+      if (Network.connection === 'none') {
+        return Observable.of(SyncStatus.UP_TO_DATE);
+      }
       return CodePush.sync(syncOptions, downloadProgress);
     }
   }
