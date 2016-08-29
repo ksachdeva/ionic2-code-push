@@ -1,3 +1,3 @@
 # CodePush Support for ionic 2 applications
 
-WIP
+See <https://github.com/ksachdeva/ionic2-code-push-example> for the usage
