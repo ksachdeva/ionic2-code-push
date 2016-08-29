@@ -1,3 +1,3 @@
-# ionic2-code-push-component
+# CodePush Support for ionic 2 applications
 
 WIP
